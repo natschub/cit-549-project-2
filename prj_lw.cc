@@ -280,25 +280,35 @@ int main(int argc, char *argv[]) {
     // use following 4 lines for the UE location boundary
     //
     //EDIT START
+
+    // maximum supported number of UE is 20
+    if (numberUE > 20) {
+        std::cout << "INPUT ERROR" << std::endl;
+        return 0;
+    }
+
     double ueXmin = 1.0;
-    //double ueXmax = 8.0;     //EDIT: uncomment for the UE placement problem
+    double ueXmax = 8.0;     //EDIT: uncomment for the UE placement problem
     double ueYmin = 12;        //EDIT: uncomment for the UE placement problem
-    //double ueYmax = 30;
+    double ueYmax = 30;
 
     // Generate a random number for X and Y coordination for each of UEs
     // in here using the above min and max boundary
     // (x, y, z) coordination for UE location. z=0 means ground
     //////////////////////////////////////
+    Ptr<UniformRandomVariable> randX = CreateObject<UniformRandomVariable>();
+    randX->SetAttribute("Min", DoubleValue(ueXmin));
+    randX->SetAttribute("Max", DoubleValue(ueXmax));
 
-    
-    double tmpX = ueXmin;
-    double tmpY = ueYmin;
+    Ptr<UniformRandomVariable> randY = CreateObject<UniformRandomVariable>();
+    randY->SetAttribute("Min", DoubleValue(ueYmin));
+    randY->SetAttribute("Max", DoubleValue(ueYmax));
 
     Ptr<ListPositionAllocator> positionAlloc1 = CreateObject<ListPositionAllocator> ();
     for (uint16_t i = 1; i <= ueNodes.GetN(); i++) {
-        tmpX += 2;
-        tmpY += 2;
-        positionAlloc1->Add (Vector(tmpX, tmpY, 0));    // x, and y should be randomly generated
+        double x = randX->GetValue();
+        double y = randY->GetValue();
+        positionAlloc1->Add (Vector(x, y, 0.0));    // x, and y should be randomly generated
     }
     
     //EDIT END
