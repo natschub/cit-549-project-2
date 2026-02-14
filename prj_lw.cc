@@ -573,18 +573,22 @@ int main(int argc, char *argv[]) {
     // The network node and interface index are provided in the assignment sheet
 
     // EDIT START ( about several lines of codes)
+
+    // node 0
+    // red dot is at node 0
+    // ifc = 1
+    internet.EnablePcapIpv4(prefix_file_name + "-pcap-server.pcap", 0, 1, true);
     
     // node 0 -> 1
+    // red dot is at node 1
     // ifc = 1
-    internet.EnablePcapIpv4(prefix_file_name + "-pcap-server-to-router.pcap", 0, 1, true);
+    internet.EnablePcapIpv4(prefix_file_name + "-pcap-server-to-router.pcap", 1, 1, true);
 
     // node 1 -> 5
+    // red dot is at node 1
     // ifc = 3
     internet.EnablePcapIpv4(prefix_file_name + "-pcap-router-to-ap.pcap", 1, 3, true);
 
-    // node 0
-    // ifc = 1
-    internet.EnablePcapIpv4(prefix_file_name + "-pcap-server.pcap", 0, 1, true);
 
     // EDIT END
   
