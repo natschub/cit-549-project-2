@@ -139,6 +139,7 @@ int main(int argc, char *argv[]) {
 
 
     // This is where all parameters input at the command line are read into variables
+    
     CommandLine cmd;
     cmd.AddValue ("simTime", "Simulation time in seconds (Default: 10 sec)", simTime);
     cmd.AddValue ("NumberUE", "Number of UEs (Default: 1 UE)", numberUE);
@@ -157,10 +158,10 @@ int main(int argc, char *argv[]) {
 
     // EDIT START : a several lines of code
 
-
-
-
-
+    cmd.AddValue("wifiMcs", "wifi MCS value (HtMcs1/HtMcs7)", phyRate);  //wifi speed setting
+    cmd.AddValue("tcpRcvBufBytes", "TCP receiver buffer size in bytes", tcpRcvBufBytes); // TCP receiver buffer size
+    cmd.AddValue("delayValueforRHtoR", "one-way link delay in ms bw remote host and router", delayValueBtwnRemoteHostAndRouter); //server-router delaty
+    cmd.AddValue("delayValueforWifi", "One-way link delay in ms bw router and wifi AP", delayValueforWifi); //routher-wifi AP delay
 
     // EDIT END
 
